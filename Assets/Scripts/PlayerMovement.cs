@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -20,7 +21,9 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Move() {
         Vector2 moveVector = InputManager.Instance.GetMoveVector();
+        Vector3 direction = new Vector3(moveVector.x, 0f, moveVector.y);
+        direction = rb.rotation * direction;
 
-        rb.velocity = Time.fixedDeltaTime * moveSpeed * new Vector3(moveVector.x, 0f, moveVector.y);
+        rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
     }
 }
