@@ -26,6 +26,7 @@ public class PlayerTeleport : MonoBehaviour {
 
     private void HandleTeleportPerformed() {
         if (TeleportFade.Instance.IsTeleporting) return;
+        if (!PlayerController.Instance.IsGrounded) return;
 
         if (currentTimelineState == TimelineState.Past) {
             pastPosition = transform.position;
@@ -39,12 +40,14 @@ public class PlayerTeleport : MonoBehaviour {
 
     private void TeleportToFuture() {
         transform.position = futurePosition;
+        currentTimelineState = TimelineState.Future;
 
         TeleportFade.Instance.FadeOut();
     }
 
     private void TeleportToPast() {
         transform.position = pastPosition;
+        currentTimelineState = TimelineState.Past;
 
         TeleportFade.Instance.FadeOut();
     }
