@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour {
     public Action OnJumpPerformed;
     public Action OnTeleportPerformed;
     public Action OnInteractPerformed;
+    public Action OnInteractHeld;
 
     private PlayerControls playerControls;
     private Vector2 moveVector;
@@ -30,7 +31,6 @@ public class InputManager : MonoBehaviour {
         playerControls.Player.Jump.performed += HandleJumpActionPerformed;
         playerControls.Player.Teleport.performed += HandleTeleportActionPerformed;
         playerControls.Player.Interact.performed += HandleInteractActionPerformed;
-
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -49,6 +49,8 @@ public class InputManager : MonoBehaviour {
     private void Update() {
         SetMoveVector();
         SetLookVector();
+        if (playerControls.Player.Interact.IsPressed())
+            OnInteractHeld?.Invoke();
     }
 
     private void SetMoveVector() {

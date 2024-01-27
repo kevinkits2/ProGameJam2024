@@ -16,7 +16,7 @@ public class breakable_box : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision) {
+    private void OnTriggerEnter(Collider collider) {
         Destroy(this.gameObject);
     } 
 }

@@ -11,7 +11,7 @@ public class PlayerInteract : MonoBehaviour {
 
 
     private void Start() {
-        InputManager.Instance.OnInteractPerformed += HandleInteractPerformed;
+        InputManager.Instance.OnInteractHeld += HandleInteractPerformed;
     }
 
     private void HandleInteractPerformed() {

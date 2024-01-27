@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour, IInteractable {
 
+    [SerializeField] bool ignoreHeight;
+    [SerializeField] float forceStrength;
+
     private Rigidbody rb;
     private Transform interactTransform;
-    private bool isAttached;
 
 
     private void Awake() {
@@ -14,27 +16,13 @@ public class Rock : MonoBehaviour, IInteractable {
     }
 
     private void Update() {
-        if (!isAttached) return;
-
-        rb.MovePosition(interactTransform.position);
     }
 
-    public void Interact(Transform interactTrasform) {
-        if (isAttached) {
-            this.interactTransform = null;
-            DropRock();
-        }
-        else {
-            this.interactTransform = interactTrasform;
-            EquipRock();
-        }
-    }
-
-    private void EquipRock() {
-        isAttached = true;
-    }
-
-    private void DropRock() {
-        isAttached = false;
+    public void Interact(Transform interactTransform) {
+        Vector3 targetPoint = Vector3.Lerp(transform.position, interactTransform.position, 0.5f);
+        Vector3 force = (targetPoint - transform.position) * forceStrength;
+        if (ignoreHeight)
+            force.y = 0;
+        rb.AddForce(force, ForceMode.Impulse);
     }
 }
