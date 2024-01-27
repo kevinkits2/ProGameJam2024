@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class TeleportFade : MonoBehaviour {
     [SerializeField] private float fadeOutDuration = 1f;
 
     private bool isTeleporting;
+    private Action callback;
 
 
     private void Awake() {
@@ -37,8 +39,13 @@ public class TeleportFade : MonoBehaviour {
         Instance = this;
     }
 
-    public void FadeIn() {
+    public void FadeIn(Action callback) {
+        this.callback = callback;
         StartCoroutine(FadeRoutine(1f, fadeInDuration, FadeType.FadeIn));
+    }
+
+    public void FadeOut() {
+        StartCoroutine(FadeRoutine(0f, fadeOutDuration, FadeType.FadeOut));
     }
 
     private IEnumerator FadeRoutine(float targetAlpha, float fadeDuration, FadeType fadeType) {
@@ -60,6 +67,7 @@ public class TeleportFade : MonoBehaviour {
 
         if (fadeType == FadeType.FadeIn) {
             StartCoroutine(FadeRoutine(0f, fadeOutDuration, FadeType.FadeOut));
+            callback?.Invoke();
         }
         else if (fadeType == FadeType.FadeOut) {
             isTeleporting = false;
