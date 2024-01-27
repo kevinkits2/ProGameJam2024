@@ -330,7 +330,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.529
+      value: 5.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
@@ -375,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
       propertyPath: m_Name
-      value: Future Rock
+      value: Past Rock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -445,7 +445,7 @@ Rigidbody:
   m_GameObject: {fileID: 117317150}
   serializedVersion: 4
   m_Mass: 10
-  m_Drag: 10
+  m_Drag: 1
   m_AngularDrag: 20
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -943,8 +943,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e995e6318c98e4da69508eadb35aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreHeight: 0
-  forceStrength: 0
+  ignoreHeight: 1
+  forceStrength: 10
 --- !u!64 &1311036947
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ Rigidbody:
   m_GameObject: {fileID: 1311036942}
   serializedVersion: 4
   m_Mass: 10
-  m_Drag: 10
+  m_Drag: 1
   m_AngularDrag: 20
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1011,12 +1011,12 @@ PrefabInstance:
         type: 3}
       propertyPath: rock1
       value: 
-      objectReference: {fileID: 1311036942}
+      objectReference: {fileID: 117317150}
     - target: {fileID: 2532481613503612698, guid: e570fe626c07fd2449cee4914eccb4f2,
         type: 3}
       propertyPath: rock2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1311036942}
     - target: {fileID: 3979976420142987434, guid: e570fe626c07fd2449cee4914eccb4f2,
         type: 3}
       propertyPath: m_IsTrigger
@@ -1206,12 +1206,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.288
+      value: -244.96
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.529
+      value: 2.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
@@ -1256,7 +1256,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 40bd1c9dc0a6b4246bc2c048256cf612,
         type: 3}
       propertyPath: m_Name
-      value: Rock
+      value: Future Rock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1412,7 +1412,7 @@ PrefabInstance:
     - target: {fileID: 2966906794634790929, guid: 4f840d7674f96a444919b73527c97b6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 9.49
       objectReference: {fileID: 0}
     - target: {fileID: 2966906794634790929, guid: 4f840d7674f96a444919b73527c97b6d,
         type: 3}
@@ -1554,7 +1554,7 @@ PrefabInstance:
     - target: {fileID: 7287209239693621581, guid: d1e3fcfacd8cb5a4fba61640c2ea4795,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 9.49
       objectReference: {fileID: 0}
     - target: {fileID: 7287209239693621581, guid: d1e3fcfacd8cb5a4fba61640c2ea4795,
         type: 3}
@@ -1569,7 +1569,7 @@ PrefabInstance:
     - target: {fileID: 8683830324170828058, guid: d1e3fcfacd8cb5a4fba61640c2ea4795,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 9.49
       objectReference: {fileID: 0}
     - target: {fileID: 8683830324170828058, guid: d1e3fcfacd8cb5a4fba61640c2ea4795,
         type: 3}

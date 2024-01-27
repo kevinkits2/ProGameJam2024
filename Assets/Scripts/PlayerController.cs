@@ -16,6 +16,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public bool IsMoving {
+        get {
+            return isMoving;
+        }
+        private set {
+            isMoving = value;
+        }
+    }
+
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
@@ -23,6 +32,7 @@ public class PlayerController : MonoBehaviour {
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
+    private bool isMoving;
     private Transform cameraTransform;
     private bool playerJumpedThisFrame;
 
@@ -54,6 +64,14 @@ public class PlayerController : MonoBehaviour {
         }
 
         Vector2 moveVector = InputManager.Instance.GetMoveVector();
+
+        if (moveVector.sqrMagnitude > 0f) {
+            isMoving = true;
+        }
+        else {
+            isMoving = false;
+        }
+
         Vector3 move = new Vector3(moveVector.x, 0, moveVector.y);
         move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
         move.y = 0f;

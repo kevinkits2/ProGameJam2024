@@ -8,11 +8,13 @@ public class Rock : MonoBehaviour, IInteractable {
     [SerializeField] float forceStrength;
 
     private Rigidbody rb;
+    private Collider colliderComponent;
     private Transform interactTransform;
 
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        colliderComponent = GetComponent<Collider>();
     }
 
     private void Update() {
