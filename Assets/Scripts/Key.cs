@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : MonoBehaviour, IInteractable {
+public class Key : MonoBehaviour, IInteractable {
+
+    [SerializeField] private float forceAmount = 50f;
 
     private Rigidbody rb;
     private Collider colliderComponent;
@@ -25,39 +27,25 @@ public class Rock : MonoBehaviour, IInteractable {
     public void Interact(Transform interactTrasform) {
         if (isAttached) {
             this.interactTransform = null;
-            DropRock();
+            Drop();
         }
         else {
             this.interactTransform = interactTrasform;
-            EquipRock();
+            Equip();
         }
     }
 
-    private void EquipRock() {
+    private void Equip() {
         isAttached = true;
-
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.useGravity = false;
-
         colliderComponent.isTrigger = true;
     }
 
-    private void DropRock() {
+    private void Drop() {
         isAttached = false;
-
         rb.useGravity = true;
         colliderComponent.isTrigger = false;
-        StartCoroutine(RockDropRoutine());
-    }
 
-    private IEnumerator RockDropRoutine() {
-        yield return new WaitForSeconds(0.1f);
-
-        while (rb.velocity.y != 0f) {
-
-            yield return null;
-        }
-
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.AddForce(Camera.main.transform.forward * forceAmount, ForceMode.Impulse);
     }
 }
