@@ -9,5 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
+<<<<<<< HEAD
     com.unity.input.settings.actions: {fileID: -8761947965841184434, guid: 00000000000000002000000000000000,
+=======
+    com.unity.input.settings.actions: {fileID: -6145080370665338074, guid: 00000000000000002000000000000000,
+>>>>>>> breakable-box
       type: 0}
