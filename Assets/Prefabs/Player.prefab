@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2966906794634790929}
   - component: {fileID: 5096740441689305937}
   - component: {fileID: 144823701416446350}
+  - component: {fileID: 3600096058928974023}
   - component: {fileID: 92491424986229685}
   - component: {fileID: 1559747579651591531}
   - component: {fileID: 3253344099553327722}
@@ -150,6 +151,18 @@ MonoBehaviour:
   virtualCam: {fileID: 0}
   shakeIntensity: 1
   shakeTime: 2
+--- !u!114 &3600096058928974023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761307447945945169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c051dec2df74e479cc1005d107d080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &92491424986229685
 Rigidbody:
   m_ObjectHideFlags: 0

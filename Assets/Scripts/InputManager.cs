@@ -62,4 +62,8 @@ public class InputManager : MonoBehaviour {
     public Vector2 GetLookVector() {
         return lookVector;
     }
+
+    public PlayerControls GetPlayerControls() {
+        return playerControls;
+    }
 }
