@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     public static InputManager Instance;
+
+    public Action OnJumpPerformed;
+    public Action OnTeleportPerformed;
 
     private PlayerControls playerControls;
     private Vector2 moveVector;
@@ -22,7 +26,18 @@ public class InputManager : MonoBehaviour {
         playerControls = new PlayerControls();
         playerControls.Enable();
 
+        playerControls.Player.Jump.performed += HandleJumpActionPerformed;
+        playerControls.Player.Teleport.performed += HandleTeleportActionPerformed;
+
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void HandleTeleportActionPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnTeleportPerformed?.Invoke();
+    }
+
+    private void HandleJumpActionPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnJumpPerformed?.Invoke();
     }
 
     private void Update() {
@@ -46,5 +61,9 @@ public class InputManager : MonoBehaviour {
 
     public Vector2 GetLookVector() {
         return lookVector;
+    }
+
+    public PlayerControls GetPlayerControls() {
+        return playerControls;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,17 @@ public class PlayerController : MonoBehaviour {
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform cameraTransform;
+    private bool playerJumpedThisFrame;
 
     private void Start() {
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
+
+        InputManager.Instance.OnJumpPerformed += HandlePlayerJumped;
+    }
+
+    private void HandlePlayerJumped() {
+        playerJumpedThisFrame = true;
     }
 
     void Update() {
@@ -24,17 +32,20 @@ public class PlayerController : MonoBehaviour {
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector2 moveVector = InputManager.Instance.GetMoveVector();
+        Vector3 move = new Vector3(moveVector.x, 0, moveVector.y);
         move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer) {
+        if (playerJumpedThisFrame && groundedPlayer) {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        playerJumpedThisFrame = false;
     }
 }
