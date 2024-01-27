@@ -5,13 +5,50 @@ using UnityEngine;
 
 public class PlayerTeleport : MonoBehaviour {
 
+    private enum TimelineState {
+        Past,
+        Future
+    }
+
+    [SerializeField] private Vector3 pastPosition;
+    [SerializeField] private Vector3 futurePosition;
+
+    private TimelineState currentTimelineState = TimelineState.Past;
+
+
     private void Start() {
         InputManager.Instance.OnTeleportPerformed += HandleTeleportPerformed;
+
+        pastPosition = transform.position;
     }
+
+
 
     private void HandleTeleportPerformed() {
         if (TeleportFade.Instance.IsTeleporting) return;
+        if (!PlayerController.Instance.IsGrounded) return;
 
-        TeleportFade.Instance.FadeIn();
+        if (currentTimelineState == TimelineState.Past) {
+            pastPosition = transform.position;
+            TeleportFade.Instance.FadeIn(TeleportToFuture);
+        }
+        else if (currentTimelineState == TimelineState.Future) {
+            futurePosition = transform.position;
+            TeleportFade.Instance.FadeIn(TeleportToPast);
+        }
+    }
+
+    private void TeleportToFuture() {
+        transform.position = futurePosition;
+        currentTimelineState = TimelineState.Future;
+
+        TeleportFade.Instance.FadeOut();
+    }
+
+    private void TeleportToPast() {
+        transform.position = pastPosition;
+        currentTimelineState = TimelineState.Past;
+
+        TeleportFade.Instance.FadeOut();
     }
 }

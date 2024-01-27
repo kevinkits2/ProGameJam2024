@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour {
 
     public Action OnJumpPerformed;
     public Action OnTeleportPerformed;
+    public Action OnInteractPerformed;
 
     private PlayerControls playerControls;
     private Vector2 moveVector;
@@ -28,8 +29,13 @@ public class InputManager : MonoBehaviour {
 
         playerControls.Player.Jump.performed += HandleJumpActionPerformed;
         playerControls.Player.Teleport.performed += HandleTeleportActionPerformed;
+        playerControls.Player.Interact.performed += HandleInteractActionPerformed;
 
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void HandleInteractActionPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnInteractPerformed?.Invoke();
     }
 
     private void HandleTeleportActionPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {

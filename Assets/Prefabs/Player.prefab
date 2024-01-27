@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2966906794634790929}
   - component: {fileID: 5096740441689305937}
   - component: {fileID: 144823701416446350}
-  - component: {fileID: 3600096058928974023}
+  - component: {fileID: 3744178669263943736}
   - component: {fileID: 92491424986229685}
   - component: {fileID: 1559747579651591531}
   - component: {fileID: 3253344099553327722}
@@ -151,7 +151,7 @@ MonoBehaviour:
   virtualCam: {fileID: 0}
   shakeIntensity: 1
   shakeTime: 2
---- !u!114 &3600096058928974023
+--- !u!114 &3744178669263943736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
