@@ -23,9 +23,11 @@ public class Key : MonoBehaviour, IInteractable {
 
     private void Update() {
         if (!isAttached) return;
-        if (FollowCamera.Instance.IsColliding) return;
+        if (interactTransform == null) return;
+        //if (FollowCamera.Instance.IsColliding) return;
 
-        rb.MovePosition(interactTransform.position);
+        //rb.MovePosition(interactTransform.position);
+        transform.position = interactTransform.position;
     }
 
     public void Interact(Transform interactTrasform) {
@@ -42,19 +44,18 @@ public class Key : MonoBehaviour, IInteractable {
     private void Equip() {
         isAttached = true;
         rb.useGravity = false;
-        rb.isKinematic = false;
-        colliderComponent.isTrigger = true;
+        rb.isKinematic = true;
     }
 
     private void Drop() {
         if (DoorOpenTrigger.Instance.KeyInTrigger && keyAnimator != null) {
+            keyAnimator.enabled = true;
             keyAnimator.SetTrigger("Open");
         }
         else {
             isAttached = false;
             rb.useGravity = true;
             rb.isKinematic = false;
-            colliderComponent.isTrigger = false;
 
             rb.AddForce(Camera.main.transform.forward * forceAmount, ForceMode.Impulse);
         }
