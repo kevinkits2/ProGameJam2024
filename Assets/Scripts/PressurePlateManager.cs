@@ -1,8 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PressurePlateManager : MonoBehaviour {
+
+    public enum Level {
+        Level1,
+        Level2
+    }
 
     [SerializeField] private Transform level2SpawnPast;
     [SerializeField] private Transform level2SpawnFuture;
@@ -16,10 +22,15 @@ public class PressurePlateManager : MonoBehaviour {
     [SerializeField] private PastPressurePlate pastPressurePlate2;
     [SerializeField] private FuturePressurePlate futurePressurePlate2;
 
+    private Level currentLevel = Level.Level1;
+
 
     private void Update() {
-        if (pastPressurePlate.playerOnPlate && pastPressurePlate.playerOnPlate) {
-            SetupLevel2();
+        if (pastPressurePlate.playerOnPlate && futurePressurePlate.playerOnPlate) {
+
+            if (currentLevel == Level.Level1) {
+                SetupLevel2();
+            }
         }
 
         if (pastPressurePlate.playerOnPlate) {
@@ -40,5 +51,8 @@ public class PressurePlateManager : MonoBehaviour {
     private void SetupLevel2() {
         pastPressurePlate = pastPressurePlate2;
         futurePressurePlate = futurePressurePlate2;
+        currentLevel = Level.Level2;
+
+        PlayerTeleport.Instance.TeleportToLevel2(level2SpawnPast.position, level2SpawnFuture.position);
     }
 }

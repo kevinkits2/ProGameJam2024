@@ -33,7 +33,12 @@ public class PlayerTeleport : MonoBehaviour {
         pastPosition = transform.position;
     }
 
+    public void TeleportToLevel2(Vector3 pastPosition, Vector3 futurePosition) {
+        this.pastPosition = pastPosition;
+        this.futurePosition = futurePosition;
 
+        TeleportFade.Instance.FadeIn(TeleportToPast);
+    }
 
     private void HandleTeleportPerformed() {
         if (TeleportFade.Instance.IsTeleporting) return;
