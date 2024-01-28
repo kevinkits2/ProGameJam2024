@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class breakable_box : MonoBehaviour
 {
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();    
     }
 
     // Update is called once per frame
@@ -17,6 +20,7 @@ public class breakable_box : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collider) {
-        Destroy(this.gameObject);
+        audioSource.Play();
+        Destroy(transform.GetChild(0).gameObject);
     } 
 }
