@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public static PlayerController Instance;
+    public PlayerController Instance;
     private bool enabled = false;
 
     public void enable()
@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandlePlayerJumped() {
-        playerJumpedThisFrame = true;
+        if (enabled)
+            playerJumpedThisFrame = true;
     }
 
     void Update() {

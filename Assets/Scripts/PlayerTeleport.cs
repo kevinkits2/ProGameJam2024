@@ -42,7 +42,7 @@ public class PlayerTeleport : MonoBehaviour {
 
     private void HandleTeleportPerformed() {
         if (TeleportFade.Instance.IsTeleporting) return;
-        if (!PlayerController.Instance.IsGrounded) return;
+        if (!Switch.current.Instance.IsGrounded) return;
 
         if (currentTimelineState == TimelineState.Past) {
             pastPosition = transform.position;
