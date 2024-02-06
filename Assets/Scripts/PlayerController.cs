@@ -6,6 +6,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public static PlayerController Instance;
+    private bool enabled = false;
+
+    public void enable()
+    {
+        enabled = true;
+    }
+
+    public void disable()
+    {
+        enabled = false;
+    }
 
     public bool IsGrounded {
         get {
@@ -38,12 +49,6 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Awake() {
-        if (Instance != null) {
-            Debug.LogError("Player Controller instance already exists!");
-            Destroy(gameObject);
-        }
-
-        Instance = this;
     }
 
     private void Start() {
@@ -58,6 +63,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        
+        if (!enabled) return;
+
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
